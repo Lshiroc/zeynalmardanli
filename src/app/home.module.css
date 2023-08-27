@@ -1,0 +1,42 @@
+.hero {
+  height: 100vh;
+  overflow: hidden;
+  padding-top: 200px;
+}
+.hero .heading {
+  line-height: 86px;
+}
+
+.radial {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: radial-gradient(circle at -130%, transparent 60%, white 85%);
+  z-index: 1;
+}
+
+.heroBackground {
+  overflow: hidden;
+  width: 1300px;
+  left: 0;
+  right: 0;
+  top: 0;
+  transform: translateX(-35%) rotate(-45deg);
+  -webkit-user-drag: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+       user-select: none;
+}
+.heroBackground .text {
+  width: -moz-max-content;
+  width: max-content;
+  color: white;
+  text-shadow: 0 0 3px #e11d48;
+}
+
+.heading {
+  z-index: 1;
+}/*# sourceMappingURL=home.module.css.map */
