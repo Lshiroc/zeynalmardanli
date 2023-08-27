@@ -1,113 +1,148 @@
-import Image from 'next/image'
+"use client";
+
+import { useState, useEffect } from 'react';
+import Link from 'next/link';
+import Image from 'next/image';
+import style from './home.module.scss';
+import topoqraf from './../assets/images/topoqraf2.png';
+import todoWebsite from './../assets/images/todowebsite.png';
+import externalLink from './../assets/images/external-link.svg';
+import code from './../assets/images/code.svg';
+import facebook from './../assets/images/facebook.svg';
+import github from './../assets/images/github.svg';
+import linkedin from './../assets/images/linkedin.svg';
+import xLogo from './../assets/images/x.svg';
 
 export default function Home() {
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    window.addEventListener('scroll', (e) => {
+      setScrolled(window.scrollY > 100);
+    })
+  }, [])
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
+    <>
+      <nav className={style.navbar}>
+        <div className={`${style.wrapper} ${scrolled && style.smallVersion}`}>
+          <Link href="/" className={style.logo}>Zeynal Mardanli</Link>
+          <div className={style.menu}>
+            <Link href="/" className={style.menuItem}>Home</Link>
+            <Link href="/" className={style.menuItem}>Projects</Link>
+            <Link href="/" className={style.menuItem}>Skills</Link>
+            <Link href="/" className={style.menuItem}>Contact</Link>
+          </div>
+          <div className={`${style.menuBtn} ${menuOpen && style.open}`} onClick={() => setMenuOpen(prev => !prev)}>
+            <span className={style.menuLine}></span>
+            <span className={style.menuLine}></span>
+            <span className={style.menuLine}></span>
+          </div>
         </div>
-      </div>
+      </nav>
+      <header className={`grid grid-cols-2 relative ${style.hero}`}>
+        <div className={style.radial}></div>
+        <div className={`absolute grid grid-cols-2 gap-x-32 gap-y-6 ${style.heroBackground}`}>
+          <div className={`text-8xl font-bold ${style.text}`}>Web Developer</div>
+          <div className={`text-8xl font-bold ${style.text}`}>Web Developer</div>
+          <div className={`text-8xl font-bold ${style.text}`}>&nbsp; &nbsp; &nbsp; &nbsp; Web Developer</div>
+          <div className={`text-8xl font-bold ${style.text}`}>&nbsp; &nbsp; &nbsp; &nbsp; Web Developer</div>
+          <div className={`text-8xl font-bold ${style.text}`}>Web Developer</div>
+          <div className={`text-8xl font-bold ${style.text}`}>Web Developer</div>
+          <div className={`text-8xl font-bold ${style.text}`}>Web Developer</div>
+          <div className={`text-8xl font-bold ${style.text}`}>Web Developer</div>
+          <div className={`text-8xl font-bold ${style.text}`}>Web Developer</div>
+          <div className={`text-8xl font-bold ${style.text}`}>Web Developer</div>
+          <div className={`text-8xl font-bold ${style.text}`}>Web Developer</div>
+          <div className={`text-8xl font-bold ${style.text}`}>Web Developer</div>
+          <div className={`text-8xl font-bold ${style.text}`}>Web Developer</div>
+          <div className={`text-8xl font-bold ${style.text}`}>Web Developer</div>
+          <div className={`text-8xl font-bold ${style.text}`}>Web Developer</div>
+          <div className={`text-8xl font-bold ${style.text}`}>Web Developer</div>
+          <div className={`text-8xl font-bold ${style.text}`}>Web Developer</div>
+        </div>
+        <h1 className={`w-full col-start-2 col-end-3 text-7xl font-medium ${style.heading}`}><span className="text-zinc-800">Hello, I'm</span><br/><span className="text-pink-400">Zeynal Mardanli</span></h1>
+      </header>
+      <main className={style.main}>
+        <section className={style.projects}>
+            <h1 className={style.title}>Projects</h1>
+            <div className={style.content}>
+              <div className={style.project}>
+                <Image src={topoqraf} alt="Topoqraf" className={style.image} />
+                <div className={style.name}>Topoqraf</div>
+                <div className={style.technologies}>
+                  NextJS + ReactJS + SASS + REST API
+                </div>
+                <div className={style.description}>Topoqraf is the first Data Vizualization Platform in Azerbaijan, which allows you to get latest data on various researches.</div>
 
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+                <div className={style.actions}>
+                  <Link href='https://topoqraf.com/en' target="_blank" className={style.action}>
+                    <Image src={externalLink} alt="Live Site" />
+                    <p>site</p>
+                  </Link>
+                  <Link href='https://github.com/Lshiroc/todo-website' target="_blank" className={style.action}>
+                  <Image src={code} alt="See Code" />
+                    <p>code</p>
+                  </Link>
+                </div>
+              </div>
+              <div className={style.project}>
+                <Image src={todoWebsite} alt="To-Do Website" className={style.image} />
+                <div className={style.name}>Doin' It</div>
+                <div className={style.technologies}>
+                  ReactJS + MongoDB + NodeJS + ExpressJS + JWT + SASS + REST API
+                </div>
+                <div className={style.description}>To-Do Website for managing daily tasks or project plans with making multiple folders</div>
 
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore the Next.js 13 playground.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+                <div className={style.actions}>
+                  <Link href='https://todo-website-zeta.vercel.app/' target="_blank" className={style.action}>
+                    <Image src={externalLink} alt="Live Site" />
+                    <p>site</p>
+                  </Link>
+                  <Link href='https://github.com/Lshiroc/todo-website' target="_blank" className={style.action}>
+                  <Image src={code} alt="See Code" />
+                    <p>code</p>
+                  </Link>
+                </div>
+              </div>
+            </div>
+        </section>
+        <section className={style.contact}>
+          <div className={`sectionx ${style.wrapper}`}>
+            <div className={style.leftPart}>
+              <div className={style.title}>Interested in Working with me?</div>
+              <div className={style.subTitle}>Do not hesitate to text me</div>
+              <div className={style.content}>
+                <input type="text" placeholder="Email" className={style.input} />
+                <textarea placeholder="Your message" className={style.message}></textarea>
+                <button className= {style.sendBtn}>Send</button>
+              </div>
+            </div>
+            <div className={style.rightPart}>
+              <div className={style.title}>You can also find me in</div>
+              <div className={style.socials}>
+                <Link href="/" className={style.social}>
+                  <Image className={style.logo} src={linkedin} alt="Linkedin" />
+                  <p className={style.username}>@ZeynalMardanli</p>
+                </Link>
+                <Link href="/" className={style.social}>
+                  <Image className={style.logo} src={github} alt="GitHub" />
+                  <p className={style.username}>@Lshiroc</p>
+                </Link>
+                <Link href="/" className={style.social}>
+                  <Image className={style.logo} src={facebook} alt="Facebook" />
+                  <p className={style.username}>@ZeynalMardanli</p>
+                </Link>
+                <Link href="/" className={style.social}>
+                  <Image className={style.logo} src={xLogo} alt="X" />
+                  <p className={style.username}>@Lshiroc</p>
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+    </>
   )
 }
