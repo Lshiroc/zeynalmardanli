@@ -52,7 +52,7 @@
   z-index: 2;
 
   .wrapper {
-    padding: 30px 25px;
+    padding: 30px 15px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -68,6 +68,7 @@
       font-size: 32px;
       font-weight: 500;
       line-height: 1.3em;
+      filter: drop-shadow(0 0 3px #ffffff);
   }
 
   .menu {
@@ -83,6 +84,8 @@
   .menuBtn {
     width: 40px;
     height: 29px;
+    filter: drop-shadow(0 0 3px #ffffff);
+    display: none;
 
     .menuLine {
       position: relative;
@@ -128,8 +131,8 @@
 .projects {
   padding-top: 60px;
   padding-bottom: 90px;
-  padding-left: 25px;
-  padding-right: 25px;
+  padding-left: 15px;
+  padding-right: 15px;
   background: linear-gradient(to bottom, rgba(244, 114, 182, .1) 0%, white 20%);
 
   .title {
@@ -210,7 +213,7 @@
   position: relative;
 
   .wrapper {
-    padding: 40px 25px;
+    padding: 40px 15px;
     display: grid;
     grid-template-columns: 45% 50%;
     column-gap: 50px;
@@ -324,7 +327,6 @@
       top: 100px;
       width: 40px;
       height: 40px;
-      // background: #FFFFFF;
       filter: drop-shadow(0 0px 5px #edb2d1);
       animation-name: starShine;
       animation-iteration-count: infinite;
@@ -385,6 +387,10 @@
 }
 
 @media screen and (max-width: 991px) {
+  .navbar .wrapper .logo {
+    font-size: 28px;
+  }
+
   .projects {
     .title {
       font-size: 54px;
@@ -413,11 +419,49 @@
       .menu {
         display: none;
       }
+
+      .menuBtn {
+        display: block;
+      }
     }
   }
 }
 
 @media screen and (max-width: 768px) {
+  .navbar .wrapper {
+    .logo {
+      font-size: 20px;
+    }
+
+    .menuBtn {
+      width: 30px;
+      height: 20px;
+
+      .menuLine {
+        width: 30px;
+        height: 2px;
+
+        &:first-child {
+          top: 0;
+        }
+
+        &:nth-child(2) {
+          top: 7px;
+        }
+
+        &:last-child {
+          top: 14px;
+        }
+      }
+
+      &.open {
+        .menuLine:last-child {
+          top: 16px;
+        }
+      }
+    }
+  }
+
   .hero {
     position: relative;
     display: block;
@@ -432,7 +476,7 @@
     }
 
     .heading {
-      font-size: 52px;
+      font-size: 48px;
       line-height: 68px;
       position: relative;
       z-index: 1;
@@ -447,6 +491,21 @@
 
     .content {
       grid-template-columns: 100%;
+    }
+  }
+
+  .contact .wrapper .leftPart .content {
+    .input {
+      max-width: 100%;
+    }
+  }
+}
+
+@media screen and (max-width: 556px) {
+  .hero {
+    .heading {
+      font-size: 38px;
+      line-height: 44px;
     }
   }
 }

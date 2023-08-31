@@ -20,4 +20,9 @@ picture, img, video {
   -webkit-user-select: none;
   -moz-user-select: none;
        user-select: none;
+}
+
+.sectionx {
+  padding-left: 15px;
+  padding-right: 15px;
 }/*# sourceMappingURL=global.css.map */
