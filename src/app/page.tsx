@@ -1,4 +1,4 @@
-/* eslint-disable react/no-unescaped-entities */ 
+/* eslint-disable react/no-unescaped-entities */
 "use client";
 
 import { useState, useEffect } from 'react';
@@ -16,7 +16,7 @@ import xLogo from './../assets/images/x.svg';
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState('none');
 
   useEffect(() => {
     window.addEventListener('scroll', (e) => {
@@ -29,13 +29,16 @@ export default function Home() {
       <nav className={style.navbar}>
         <div className={`${style.wrapper} ${scrolled && style.smallVersion}`}>
           <Link href="/" className={style.logo}>Zeynal Mardanli</Link>
-          <div className={style.menu}>
-            <Link href="/" className={style.menuItem}>Home</Link>
-            <Link href="/" className={style.menuItem}>Projects</Link>
-            <Link href="/" className={style.menuItem}>Skills</Link>
-            <Link href="/" className={style.menuItem}>Contact</Link>
+          <div className={`${style.menu} ${menuOpen == 'open' && style.open}`}>
+            <div className={`${style.menuWrapper} ${menuOpen == 'open' ? style.open : menuOpen == 'close' && style.close}`}>
+              <Link href="/" className={style.menuItem}>Home</Link>
+              <Link href="/" className={style.menuItem}>Projects</Link>
+              <Link href="/" className={style.menuItem}>Skills</Link>
+              <Link href="/" className={style.menuItem}>Contact</Link>
+            </div>
+            <div className={`${style.border} ${menuOpen == 'close' ? style.close : menuOpen == 'open' && style.open}`}></div>
           </div>
-          <div className={`${style.menuBtn} ${menuOpen && style.open}`} onClick={() => setMenuOpen(prev => !prev)}>
+          <div className={`${style.menuBtn} ${menuOpen == 'open' && style.open}`} onClick={() => setMenuOpen(menuOpen == 'open' ? 'close' : 'open')}>
             <span className={style.menuLine}></span>
             <span className={style.menuLine}></span>
             <span className={style.menuLine}></span>

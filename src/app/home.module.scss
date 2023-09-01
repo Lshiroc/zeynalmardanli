@@ -69,15 +69,19 @@
       font-weight: 500;
       line-height: 1.3em;
       filter: drop-shadow(0 0 3px #ffffff);
+      color: #111827;
   }
 
   .menu {
-    display: grid;
-    grid-template-columns: repeat(4, auto);
-    column-gap: 20px;
+    .menuWrapper {
+      display: grid;
+      grid-template-columns: repeat(4, auto);
+      column-gap: 20px;
+    }
 
     .menuItem {
       font-size: 20px;
+      color: #111827;
     }
   }
 
@@ -417,7 +421,124 @@
   .navbar {
     .wrapper {
       .menu {
-        display: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 100vh;
+
+        .border {
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 0;
+          bottom: 0;
+          animation-fill-mode: forwards;
+
+          &.open {
+            border: 6px solid #d946ef;
+            transform: scale(1.1);
+            animation-name: menuOpen;
+            animation-duration: .4s;
+            animation-delay: .2s;
+            animation-iteration-count: 1;
+
+            @keyframes menuOpen {
+              0% {
+                transform: scale(1.1);
+              }
+
+              100% {
+                transform: scale(1);
+              }
+            }
+          }
+
+          &.close {
+            border: 6px solid #d946ef;
+            animation-name: menuClose;
+            animation-duration: .4s;
+            animation-delay: .2s;
+            animation-iteration-count: 1;
+
+            @keyframes menuClose {
+              0% {
+                transform: scale(1);
+              }
+
+              100% {
+                transform: scale(1.1);
+              }
+            }
+          }
+        }
+
+        .menuWrapper {
+          height: 100%;
+          background: #d946ef;
+          grid-template-columns: 100%;
+          grid-template-rows: repeat(4, 40px);
+          row-gap: 40px;
+          justify-content: center;
+          align-items: center;
+          align-content: center;
+          transform: translate(100%);
+          animation-fill-mode: forwards;
+          transition: 0.3s;
+
+          @keyframes menuAnimate {
+            0% {
+              transform: translate(100%);
+            }
+
+            70% {
+              transform: translate(60%);
+            }
+
+
+            85% {
+              transform: translate(10%);
+            }
+
+            100% {
+              transform: translate(0%)
+            }
+          }
+
+          @keyframes menuCloseAnimate {
+            0% {
+              transform: scale(1);
+              opacity: 1;
+            }
+
+            100% {
+              transform: scale(.9);
+              opacity: 0;
+            }
+          }
+
+          &.open {
+            animation: menuAnimate;
+            animation-duration: .5s;
+            animation-fill-mode: forwards;
+            animation-iteration-count: 1;
+            animation-timing-function: ease-in;
+          }
+
+          &.close {
+            animation: menuCloseAnimate;
+            animation-duration: .5s;
+            animation-iteration-count: 1;
+            // animation-timing-function: ease-in;
+          }
+        }
+
+        .menuItem {
+          text-align: center;
+          font-size: 26px;
+          font-weight: 500;
+          color: #111827;
+        }
       }
 
       .menuBtn {
