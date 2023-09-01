@@ -31,10 +31,10 @@ export default function Home() {
           <Link href="/" className={style.logo}>Zeynal Mardanli</Link>
           <div className={`${style.menu} ${menuOpen == 'open' && style.open}`}>
             <div className={`${style.menuWrapper} ${menuOpen == 'open' ? style.open : menuOpen == 'close' && style.close}`}>
-              <Link href="/" className={style.menuItem}>Home</Link>
-              <Link href="/" className={style.menuItem}>Projects</Link>
-              <Link href="/" className={style.menuItem}>Skills</Link>
-              <Link href="/" className={style.menuItem}>Contact</Link>
+              <Link href="/" className={style.menuItem}>HOME</Link>
+              <Link href="/" className={style.menuItem}>PROJECTS</Link>
+              <Link href="/" className={style.menuItem}>SKILLS</Link>
+              <Link href="/" className={style.menuItem}>CONTACT</Link>
             </div>
             <div className={`${style.border} ${menuOpen == 'close' ? style.close : menuOpen == 'open' && style.open}`}></div>
           </div>
