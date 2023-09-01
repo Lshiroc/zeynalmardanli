@@ -1,5 +1,5 @@
 .hero {
-  height: 100vh;
+  height: 100svh;
   overflow: hidden;
   padding-top: 200px;
 
@@ -114,6 +114,10 @@
     }
 
     &.open {
+      .menuLine {
+        background-color: white;
+      }
+
       .menuLine:first-child {
         transform: rotate(45deg);
         transform-origin: top left;
@@ -425,7 +429,7 @@
         top: 0;
         left: 0;
         right: 0;
-        height: 100vh;
+        height: 100svh;
 
         .border {
           position: absolute;
@@ -477,8 +481,8 @@
           height: 100%;
           background: #d946ef;
           grid-template-columns: 100%;
-          grid-template-rows: repeat(4, 40px);
-          row-gap: 40px;
+          grid-template-rows: repeat(4, 40px) .2fr;
+          row-gap: 30px;
           justify-content: center;
           align-items: center;
           align-content: center;
@@ -529,13 +533,12 @@
             animation: menuCloseAnimate;
             animation-duration: .5s;
             animation-iteration-count: 1;
-            // animation-timing-function: ease-in;
           }
         }
 
         .menuItem {
           text-align: center;
-          font-size: 26px;
+          font-size: 34px;
           font-weight: 500;
           color: white;
         }
