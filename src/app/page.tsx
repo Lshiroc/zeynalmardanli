@@ -10,9 +10,13 @@ import todoWebsite from './../assets/images/todowebsite.png';
 import externalLink from './../assets/images/external-link.svg';
 import code from './../assets/images/code.svg';
 import facebook from './../assets/images/facebook.svg';
+import facebookHero from './../assets/images/facebook-hero.svg';
 import github from './../assets/images/github.svg';
+import githubHero from './../assets/images/github-hero.svg';
 import linkedin from './../assets/images/linkedin.svg';
+import linkedinHero from './../assets/images/linkedin-hero.svg';
 import xLogo from './../assets/images/x.svg';
+import xHeroLogo from './../assets/images/x-hero.svg';
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
@@ -66,7 +70,23 @@ export default function Home() {
           <div className={`text-8xl font-bold ${style.text}`}>Web Developer</div>
           <div className={`text-8xl font-bold ${style.text}`}>Web Developer</div>
         </div>
-        <h1 className={`w-full col-start-2 col-end-3 text-7xl font-medium ${style.heading}`}><span className="text-zinc-800">Hello, I'm</span><br/><span className="text-pink-400">Zeynal Mardanli</span></h1>
+        <div className={`w-full col-start-2 col-end-3 ${style.heroRight} ${menuOpen == 'open' && style.upZIndex}`}>
+          <h1 className={`text-7xl font-medium ${style.heading}`}><span className="text-zinc-800">Hello, I'm</span><br/><span className="text-pink-400">Zeynal Mardanli</span></h1>
+          <div className={style.socials}>
+            <Link href='https://www.linkedin.com/in/zeynalmardanli/' className={style.social}>
+              <Image className={style.img} src={linkedinHero} alt="Linkedin" />
+            </Link>
+            <Link href='https://www.facebook.com/profile.php?id=100079193090176' className={style.social}>
+              <Image className={style.img} src={facebookHero} alt="Facebook" />
+            </Link>
+            <Link href='https://twitter.com/lshiroc' className={style.social}>
+              <Image className={`${style.img} ${style.xLogo}`} src={xHeroLogo} alt="X" />
+            </Link>
+            <Link href='https://github.com/Lshiroc' className={style.social}>
+              <Image className={style.img} src={githubHero} alt="GitHub" />
+            </Link>
+          </div>
+        </div>
       </header>
       <main className={style.main}>
         <section className={style.projects}>
@@ -126,20 +146,20 @@ export default function Home() {
             <div className={style.rightPart}>
               <div className={style.title}>You can also find me in</div>
               <div className={style.socials}>
-                <Link href="/" className={style.social}>
+                <Link href="https://www.linkedin.com/in/zeynalmardanli/" className={style.social}>
                   <Image className={style.logo} src={linkedin} alt="Linkedin" />
                   <p className={style.username}>@ZeynalMardanli</p>
                 </Link>
-                <Link href="/" className={style.social}>
+                <Link href="https://github.com/Lshiroc" className={style.social}>
                   <Image className={style.logo} src={github} alt="GitHub" />
                   <p className={style.username}>@Lshiroc</p>
                 </Link>
-                <Link href="/" className={style.social}>
+                <Link href="https://www.facebook.com/profile.php?id=100079193090176" className={style.social}>
                   <Image className={style.logo} src={facebook} alt="Facebook" />
                   <p className={style.username}>@ZeynalMardanli</p>
                 </Link>
-                <Link href="/" className={style.social}>
-                  <Image className={style.logo} src={xLogo} alt="X" />
+                <Link href="https://twitter.com/lshiroc" className={style.social}>
+                  <Image className={`${style.logo} ${style.xLogo}`} src={xLogo} alt="X" />
                   <p className={style.username}>@Lshiroc</p>
                 </Link>
               </div>
