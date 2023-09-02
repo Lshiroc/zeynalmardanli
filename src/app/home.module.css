@@ -3,8 +3,38 @@
   overflow: hidden;
   padding-top: 200px;
 }
-.hero .heading {
+.hero .heroRight {
+  z-index: 6;
+  position: relative;
+}
+.hero .heroRight.upZIndex {
+  z-index: 4;
+}
+.hero .heroRight .heading {
   line-height: 86px;
+  margin-bottom: 20px;
+}
+.hero .heroRight .socials {
+  display: grid;
+  grid-template-columns: repeat(4, 45px);
+  -moz-column-gap: 20px;
+       column-gap: 20px;
+}
+.hero .heroRight .socials .social {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+}
+.hero .heroRight .socials .social .img {
+  width: 45px;
+  height: 45px;
+}
+.hero .heroRight .socials .social .img.xLogo {
+  width: 40px;
+  height: 40px;
 }
 
 .radial {
@@ -37,10 +67,6 @@
   text-shadow: 0 0 4px #e11d48, 0 0 40px #f9a8d4;
 }
 
-.heading {
-  z-index: 1;
-}
-
 .navbar {
   position: fixed;
   top: 0;
@@ -48,7 +74,7 @@
   right: 0;
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
-  z-index: 2;
+  z-index: 7;
 }
 .navbar .wrapper {
   padding: 30px 15px;
@@ -58,8 +84,8 @@
   transition: 0.2s;
 }
 .navbar .wrapper.smallVersion {
-  padding-top: 20px;
-  padding-bottom: 20px;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 .navbar .logo {
   font-size: 32px;
@@ -77,6 +103,12 @@
 .navbar .menu .menuItem {
   font-size: 20px;
   color: #111827;
+  font-weight: bold;
+}
+.navbar .menu .menuItem.active {
+  text-shadow: -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+  color: #f472b6;
+  transition: 0.3s text-shadow;
 }
 .navbar .menuBtn {
   width: 40px;
@@ -126,6 +158,7 @@
   background: linear-gradient(to bottom, rgba(244, 114, 182, 0.1) 0%, white 20%);
 }
 .projects .title {
+  font-family: "Righteous", sans-serif;
   font-size: 62px;
   font-weight: 500;
   line-height: 1.1em;
@@ -199,6 +232,7 @@
   align-items: center;
 }
 .contact .title {
+  font-family: "Righteous", sans-serif;
   font-size: 62px;
   font-weight: 500;
   line-height: 1.1em;
@@ -207,6 +241,7 @@
   margin-bottom: 10x;
 }
 .contact .subTitle {
+  font-family: "Righteous", sans-serif;
   font-size: 26px;
   font-weight: 500;
   color: #fdf4ff;
@@ -280,6 +315,11 @@
   width: 35px;
   height: 35px;
 }
+.contact .rightPart .socials .social .logo.xLogo {
+  margin-left: 2px;
+  width: 30px;
+  height: 30px;
+}
 .contact .rightPart .socials .social .username {
   margin-left: 10px;
   font-size: 18px;
@@ -344,17 +384,19 @@
   }
   .contact .wrapper {
     grid-template-columns: 100%;
-    row-gap: 40px;
   }
   .contact .wrapper .leftPart .title {
     font-size: 48px;
+  }
+  .contact .wrapper .rightPart {
+    display: none;
   }
   .navbar .wrapper .menu {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    height: 100svh;
+    height: 100vh;
   }
   .navbar .wrapper .menu .border {
     position: absolute;
@@ -445,7 +487,9 @@
     animation-iteration-count: 1;
   }
   .navbar .wrapper .menu .menuItem {
+    font-family: "Righteous", sans-serif;
     text-align: center;
+    letter-spacing: 2px;
     font-size: 34px;
     font-weight: 500;
     color: white;
@@ -489,12 +533,21 @@
   .hero .heroBackground {
     opacity: 0.5;
   }
-  .hero .heading {
+  .hero .heroRight {
+    display: grid;
+    grid-template-columns: 100%;
+    justify-content: center;
+    position: relative;
+  }
+  .hero .heroRight .heading {
     font-size: 48px;
     line-height: 68px;
     position: relative;
-    z-index: 1;
     text-align: center;
+  }
+  .hero .heroRight .socials {
+    display: inline-grid;
+    margin: 0 auto;
   }
   .projects .title {
     font-size: 44px;

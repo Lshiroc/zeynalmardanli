@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 "use client";
 
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, RefObject } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import style from './home.module.scss';
@@ -21,11 +21,39 @@ import xHeroLogo from './../assets/images/x-hero.svg';
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState('none');
+  const [currentPage, setCurrentPage] = useState('Home');
+  const home = useRef(null);
+  const projects = useRef(null);
+  const contact = useRef(null);
+
+  const elementIsVisibleInViewport = (el:any, partiallyVisible = false) => {
+    const { top, left, bottom, right } = el.getBoundingClientRect();
+    const { innerHeight, innerWidth } = window;
+    return partiallyVisible
+      ? ((top > 0 && top < innerHeight) ||
+          (bottom > 0 && bottom < innerHeight)) &&
+          ((left > 0 && left < innerWidth) || (right > 0 && right < innerWidth))
+      : top >= 0 && left >= 0 && bottom <= innerHeight && right <= innerWidth;
+  };
 
   useEffect(() => {
+
+
     window.addEventListener('scroll', (e) => {
       setScrolled(window.scrollY > 100);
-    })
+
+      if(elementIsVisibleInViewport(home.current)) {
+        setCurrentPage('Home');
+      }
+
+      if(elementIsVisibleInViewport(projects.current)) {
+        setCurrentPage('Projects');
+      }
+
+      if(elementIsVisibleInViewport(contact.current)) {
+        setCurrentPage('Contact');
+      }
+    });
   }, [])
 
   return (
@@ -35,10 +63,9 @@ export default function Home() {
           <Link href="/" className={style.logo}>Zeynal Mardanli</Link>
           <div className={`${style.menu} ${menuOpen == 'open' && style.open}`}>
             <div className={`${style.menuWrapper} ${menuOpen == 'open' ? style.open : menuOpen == 'close' && style.close}`}>
-              <Link href="/" className={style.menuItem}>HOME</Link>
-              <Link href="/" className={style.menuItem}>PROJECTS</Link>
-              <Link href="/" className={style.menuItem}>SKILLS</Link>
-              <Link href="/" className={style.menuItem}>CONTACT</Link>
+              <Link href="/#home" className={`${style.menuItem} ${currentPage == 'Home' && style.active}`}>HOME</Link>
+              <Link href="/#projects" className={`${style.menuItem} ${currentPage == 'Projects' && style.active}`}>PROJECTS</Link>
+              <Link href="/#contact" className={`${style.menuItem} ${currentPage == 'Contact' && style.active}`}>CONTACT</Link>
             </div>
             <div className={`${style.border} ${menuOpen == 'close' ? style.close : menuOpen == 'open' && style.open}`}></div>
           </div>
@@ -49,7 +76,7 @@ export default function Home() {
           </div>
         </div>
       </nav>
-      <header className={`grid grid-cols-2 relative ${style.hero}`}>
+      <header id="home" className={`grid grid-cols-2 relative ${style.hero}`}>
         <div className={style.radial}></div>
         <div className={`absolute grid grid-cols-2 gap-x-32 gap-y-6 ${style.heroBackground}`}>
           <div className={`text-8xl font-bold ${style.text}`}>Web Developer</div>
@@ -70,7 +97,7 @@ export default function Home() {
           <div className={`text-8xl font-bold ${style.text}`}>Web Developer</div>
           <div className={`text-8xl font-bold ${style.text}`}>Web Developer</div>
         </div>
-        <div className={`w-full col-start-2 col-end-3 ${style.heroRight} ${menuOpen == 'open' && style.upZIndex}`}>
+        <div ref={home} className={`w-full col-start-2 col-end-3 ${style.heroRight} ${menuOpen == 'open' && style.upZIndex}`}>
           <h1 className={`text-7xl font-medium ${style.heading}`}><span className="text-zinc-800">Hello, I'm</span><br/><span className="text-pink-400">Zeynal Mardanli</span></h1>
           <div className={style.socials}>
             <Link href='https://www.linkedin.com/in/zeynalmardanli/' className={style.social}>
@@ -89,10 +116,10 @@ export default function Home() {
         </div>
       </header>
       <main className={style.main}>
-        <section className={style.projects}>
+        <section id="projects" className={style.projects}>
             <h1 className={style.title}>Projects</h1>
             <div className={style.content}>
-              <div className={style.project}>
+              <div ref={projects} className={style.project}>
                 <Image src={topoqraf} alt="Topoqraf" className={style.image} />
                 <div className={style.name}>Topoqraf</div>
                 <div className={style.technologies}>
@@ -113,7 +140,7 @@ export default function Home() {
               </div>
               <div className={style.project}>
                 <Image src={todoWebsite} alt="To-Do Website" className={style.image} />
-                <div className={style.name}>Doin' It</div>
+                <div className={style.name}>Doin' It | To-Do Website</div>
                 <div className={style.technologies}>
                   ReactJS + MongoDB + NodeJS + ExpressJS + JWT + SASS + REST API
                 </div>
@@ -132,12 +159,12 @@ export default function Home() {
               </div>
             </div>
         </section>
-        <section className={style.contact}>
+        <section id="contact" className={style.contact}>
           <div className={`sectionx ${style.wrapper}`}>
             <div className={style.leftPart}>
               <div className={style.title}>Interested in Working with me?</div>
               <div className={style.subTitle}>Do not hesitate to text me</div>
-              <div className={style.content}>
+              <div ref={contact} className={style.content}>
                 <input type="text" placeholder="Email" className={style.input} />
                 <textarea placeholder="Your message" className={style.message}></textarea>
                 <button className= {style.sendBtn}>Send</button>
