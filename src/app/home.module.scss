@@ -262,6 +262,7 @@
   margin: 0 auto;
   background-color: #f472b6;
   position: relative;
+  overflow: hidden;
 
   .wrapper {
     padding: 40px 15px;
@@ -421,6 +422,34 @@
       }
     }
 
+  }
+
+  .kururin {
+    position: absolute;
+    bottom: 0;
+    transform: translate(-200px);
+    width: 150px;
+    animation-duration: 3.5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+
+    .img {
+      width: 100%;
+    }
+
+    @keyframes kururinGo {
+      0% {
+        transform: translate(-200px);
+      }
+
+      100% {
+        transform: translate(calc(100vw + 150px));
+      }
+    }
+
+    &.animate {
+      animation-name: kururinGo;
+    }
   }
 }
 
