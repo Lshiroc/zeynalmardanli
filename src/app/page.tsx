@@ -46,7 +46,7 @@ export default function Home() {
       },
       body: JSON.stringify({
         mail: mailInput.current?.value,
-        textInput: textInput.current?.value
+        message: textInput.current?.value
       })
     }
 
