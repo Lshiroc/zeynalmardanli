@@ -182,7 +182,7 @@ export default function Home() {
               <div ref={contact} className={style.content}>
                 <input type="text" placeholder="Email" ref={mailInput} className={style.input} />
                 <textarea placeholder="Your message" ref={textInput} className={style.message}></textarea>
-                <button className= {style.sendBtn}>Send</button>
+                <button onClick={() => sendMessage()} className= {style.sendBtn}>Send</button>
               </div>
             </div>
             <div className={style.rightPart}>
