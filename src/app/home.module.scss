@@ -4,11 +4,11 @@
   padding-top: 200px;
 
   .heroRight {
-    z-index: 6;
+    z-index: 3;
     position: relative;
 
     &.upZIndex {
-      z-index: 4;
+      z-index: 1;
     }
 
     .heading {
@@ -81,7 +81,7 @@
   right: 0;
   -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
-  z-index: 7;
+  z-index: 4;
 
   .wrapper {
     padding: 30px 15px;
@@ -97,7 +97,7 @@
   }
 
   .logo {
-      // font-family: 'Righteous', sans-serif;
+      font-family: 'Righteous', sans-serif;
       font-size: 32px;
       font-weight: 500;
       line-height: 1.3em;
@@ -106,11 +106,9 @@
   }
 
   .menu {
-    .menuWrapper {
-      display: grid;
-      grid-template-columns: repeat(4, auto);
-      column-gap: 20px;
-    }
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    column-gap: 20px;
 
     .menuItem {
       font-size: 20px;
@@ -490,114 +488,64 @@
         position: absolute;
         top: 0;
         left: 0;
-        right: 0;
+        width: 100vw;
         height: 100vh;
+        background: #d946ef;
+        grid-template-columns: 100%;
+        grid-template-rows: repeat(4, 40px) .2fr;
+        row-gap: 30px;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+        transform: translate(100%);
+        animation-fill-mode: forwards;
+        transition: 0.3s;
+        // z-index: 1;
+        // position: relative;
 
-        .border {
-          position: absolute;
-          left: 0;
-          right: 0;
-          top: 0;
-          bottom: 0;
-          animation-fill-mode: forwards;
-
-          &.open {
-            border: 10px solid #d946ef;
-            transform: scale(1.1);
-            animation-name: menuOpen;
-            animation-duration: .2s;
-            animation-delay: .1s;
-            animation-iteration-count: 1;
-
-            @keyframes menuOpen {
-              0% {
-                transform: scale(1.1);
-              }
-
-              100% {
-                transform: scale(1);
-              }
-            }
+        @keyframes menuAnimate {
+          0% {
+            transform: translate(100%);
           }
 
-          &.close {
-            border: 10px solid #d946ef;
-            animation-name: menuClose;
-            animation-duration: .4s;
-            animation-delay: .2s;
-            animation-iteration-count: 1;
+          70% {
+            transform: translate(60%);
+          }
 
-            @keyframes menuClose {
-              0% {
-                transform: scale(1);
-              }
 
-              100% {
-                transform: scale(1.1);
-              }
-            }
+          85% {
+            transform: translate(10%);
+          }
+
+          100% {
+            transform: translate(0%)
           }
         }
 
-        .menuWrapper {
-          height: 100%;
-          background: #d946ef;
-          grid-template-columns: 100%;
-          grid-template-rows: repeat(4, 40px) .2fr;
-          row-gap: 30px;
-          justify-content: center;
-          align-items: center;
-          align-content: center;
-          transform: translate(100%);
+        @keyframes menuCloseAnimate {
+          0% {
+            transform: scale(1);
+            opacity: 1;
+          }
+
+          100% {
+            transform: scale(.9);
+            opacity: 0;
+          }
+        }
+
+        &.open {
+          animation: menuAnimate;
+          animation-duration: .5s;
           animation-fill-mode: forwards;
-          transition: 0.3s;
-          z-index: 1;
-          position: relative;
+          animation-iteration-count: 1;
+          animation-timing-function: ease-in;
+        }
 
-          @keyframes menuAnimate {
-            0% {
-              transform: translate(100%);
-            }
-
-            70% {
-              transform: translate(60%);
-            }
-
-
-            85% {
-              transform: translate(10%);
-            }
-
-            100% {
-              transform: translate(0%)
-            }
-          }
-
-          @keyframes menuCloseAnimate {
-            0% {
-              transform: scale(1);
-              opacity: 1;
-            }
-
-            100% {
-              transform: scale(.9);
-              opacity: 0;
-            }
-          }
-
-          &.open {
-            animation: menuAnimate;
-            animation-duration: .5s;
-            animation-fill-mode: forwards;
-            animation-iteration-count: 1;
-            animation-timing-function: ease-in;
-          }
-
-          &.close {
-            animation: menuCloseAnimate;
-            animation-duration: .5s;
-            animation-iteration-count: 1;
-          }
+        &.close {
+          animation: menuCloseAnimate;
+          animation-duration: .5s;
+          animation-iteration-count: 1;
         }
 
         .menuItem {

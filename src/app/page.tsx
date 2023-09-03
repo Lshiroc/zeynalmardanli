@@ -25,6 +25,8 @@ export default function Home() {
   const home = useRef(null);
   const projects = useRef(null);
   const contact = useRef(null);
+  const mailInput = useRef<HTMLInputElement>(null);
+  const textInput = useRef<HTMLTextAreaElement>(null);
 
   const elementIsVisibleInViewport = (el:any, partiallyVisible = false) => {
     const { top, left, bottom, right } = el.getBoundingClientRect();
@@ -36,9 +38,24 @@ export default function Home() {
       : top >= 0 && left >= 0 && bottom <= innerHeight && right <= innerWidth;
   };
 
+  const sendMessage = () => {
+    const options = {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        mail: mailInput.current?.value,
+        textInput: textInput.current?.value
+      })
+    }
+
+    fetch('https://zeynalmardanli-backend.vercel.app/mail', options)
+    .then(resp => resp.json())
+    .then(data => console.log("message sent", data));
+  }  
+
   useEffect(() => {
-
-
     window.addEventListener('scroll', (e) => {
       setScrolled(window.scrollY > 100);
 
@@ -60,13 +77,11 @@ export default function Home() {
     <>
       <nav className={style.navbar}>
         <div className={`${style.wrapper} ${scrolled && style.smallVersion}`}>
-          <Link href="/" className={style.logo}>Zeynal Mardanli</Link>
-          <div className={`${style.menu} ${menuOpen == 'open' && style.open}`}>
-            <div className={`${style.menuWrapper} ${menuOpen == 'open' ? style.open : menuOpen == 'close' && style.close}`}>
-              <Link href="/#home" className={`${style.menuItem} ${currentPage == 'Home' && style.active}`}>HOME</Link>
-              <Link href="/#projects" className={`${style.menuItem} ${currentPage == 'Projects' && style.active}`}>PROJECTS</Link>
-              <Link href="/#contact" className={`${style.menuItem} ${currentPage == 'Contact' && style.active}`}>CONTACT</Link>
-            </div>
+          <Link href="/" className={style.logo}>ZEYNAL M</Link>
+          <div className={`${style.menu} ${menuOpen == 'open' ? style.open : menuOpen == 'close' && style.close}`}>
+              <Link onClick={() => setMenuOpen('close')} href="/#home" className={`${style.menuItem} ${currentPage == 'Home' && style.active}`}>HOME</Link>
+              <Link onClick={() => setMenuOpen('close')} href="/#projects" className={`${style.menuItem} ${currentPage == 'Projects' && style.active}`}>PROJECTS</Link>
+              <Link onClick={() => setMenuOpen('close')} href="/#contact" className={`${style.menuItem} ${currentPage == 'Contact' && style.active}`}>CONTACT</Link>
             <div className={`${style.border} ${menuOpen == 'close' ? style.close : menuOpen == 'open' && style.open}`}></div>
           </div>
           <div className={`${style.menuBtn} ${menuOpen == 'open' && style.open}`} onClick={() => setMenuOpen(menuOpen == 'open' ? 'close' : 'open')}>
@@ -165,8 +180,8 @@ export default function Home() {
               <div className={style.title}>Interested in Working with me?</div>
               <div className={style.subTitle}>Do not hesitate to text me</div>
               <div ref={contact} className={style.content}>
-                <input type="text" placeholder="Email" className={style.input} />
-                <textarea placeholder="Your message" className={style.message}></textarea>
+                <input type="text" placeholder="Email" ref={mailInput} className={style.input} />
+                <textarea placeholder="Your message" ref={textInput} className={style.message}></textarea>
                 <button className= {style.sendBtn}>Send</button>
               </div>
             </div>
