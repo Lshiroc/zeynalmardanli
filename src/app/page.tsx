@@ -3,6 +3,7 @@
 
 import React, { useState, useEffect, useRef, RefObject } from 'react';
 import Link from 'next/link';
+import validator from 'validator';
 import Image from 'next/image';
 import style from './home.module.scss';
 import topoqraf from './../assets/images/topoqraf2.png';
@@ -42,6 +43,17 @@ export default function Home() {
   };
 
   const sendMessage = () => {
+    if(!validator.isEmail(mailInput.current?.value) || textInput.current?.value.trim() == "") {
+      if(sendBtn.current) {
+        sendBtn.current.innerHTML = "Wrong inputs! Try again";
+        setTimeout(() => {
+          if(sendBtn.current) {
+            sendBtn.current.innerHTML = "Send";
+          }  
+        }, 5000);
+      }
+    } 
+
     const options = {
       method: "POST",
       headers: {
