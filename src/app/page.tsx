@@ -17,16 +17,19 @@ import linkedin from './../assets/images/linkedin.svg';
 import linkedinHero from './../assets/images/linkedin-hero.svg';
 import xLogo from './../assets/images/x.svg';
 import xHeroLogo from './../assets/images/x-hero.svg';
+import kururin from './../assets/images/kururin-kuru-kuru.gif';
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState('none');
   const [currentPage, setCurrentPage] = useState('Home');
+  const [messageSent, setMessageSent] = useState(false);
   const home = useRef(null);
   const projects = useRef(null);
   const contact = useRef(null);
   const mailInput = useRef<HTMLInputElement>(null);
   const textInput = useRef<HTMLTextAreaElement>(null);
+  const sendBtn = useRef<HTMLButtonElement>(null);
 
   const elementIsVisibleInViewport = (el:any, partiallyVisible = false) => {
     const { top, left, bottom, right } = el.getBoundingClientRect();
@@ -52,7 +55,37 @@ export default function Home() {
 
     fetch('https://zeynalmardanli-backend.vercel.app/mail', options)
     .then(resp => resp.json())
-    .then(data => console.log("message sent", data));
+    .then(data => {
+      if(data.messageId) {
+        if(mailInput.current) {
+          mailInput.current.value = "";
+        }
+        if(textInput.current) {
+          textInput.current.value = "";
+        }
+        if(sendBtn.current) {
+          sendBtn.current.innerHTML = "Message Sent!";
+        }
+        setMessageSent(true);
+        setTimeout(() => {
+          setMessageSent(false);  
+          if(sendBtn.current) {
+            sendBtn.current.innerHTML = "Send";
+          }
+        }, 3500);
+      }
+    })
+    .catch(err => {
+      console.error(err);
+      if(sendBtn.current) {
+        sendBtn.current.innerHTML = "Oops, try again later";
+      }
+      setTimeout(() => {
+        if(sendBtn.current) {
+          sendBtn.current.innerHTML = "Send";
+        }  
+      }, 5000);
+    });
   }  
 
   useEffect(() => {
@@ -182,7 +215,7 @@ export default function Home() {
               <div ref={contact} className={style.content}>
                 <input type="text" placeholder="Email" ref={mailInput} className={style.input} />
                 <textarea placeholder="Your message" ref={textInput} className={style.message}></textarea>
-                <button onClick={() => sendMessage()} className= {style.sendBtn}>Send</button>
+                <button ref={sendBtn} onClick={() => sendMessage()} className= {style.sendBtn}>Send</button>
               </div>
             </div>
             <div className={style.rightPart}>
@@ -206,6 +239,9 @@ export default function Home() {
                 </Link>
               </div>
             </div>
+          </div>
+          <div className={`${style.kururin} ${messageSent && style.animate}`}>
+            <Image className={style.img} src={kururin} alt="Kururin" />
           </div>
         </section>
       </main>
