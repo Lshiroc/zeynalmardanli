@@ -53,6 +53,7 @@ export default function Home() {
             sendBtn.current.innerHTML = "Send";
           }  
         }, 5000);
+        return false;
       }
     } 
 
