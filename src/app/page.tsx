@@ -43,7 +43,9 @@ export default function Home() {
   };
 
   const sendMessage = () => {
-    if(!validator.isEmail(mailInput.current?.value) || textInput.current?.value.trim() == "") {
+    const mainInp = mailInput.current?.value as string;
+    const textInp = textInput.current?.value.trim() as string;
+    if(!validator.isEmail(mainInp) || textInp == "") {
       if(sendBtn.current) {
         sendBtn.current.innerHTML = "Wrong inputs! Try again";
         setTimeout(() => {
