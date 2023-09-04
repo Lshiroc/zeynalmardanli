@@ -8,6 +8,9 @@ import Image from 'next/image';
 import style from './home.module.scss';
 import topoqraf from './../assets/images/topoqraf2.png';
 import todoWebsite from './../assets/images/todowebsite.png';
+import tictactoe from './../assets/images/tic-tac-toe.png';
+import restcountries from './../assets/images/rest-countries.png';
+import leetcodeStats from './../assets/images/leetcode-stats.jpg';
 import externalLink from './../assets/images/external-link.svg';
 import code from './../assets/images/code.svg';
 import facebook from './../assets/images/facebook.svg';
@@ -163,16 +166,16 @@ export default function Home() {
         <div ref={home} className={`w-full col-start-2 col-end-3 ${style.heroRight} ${menuOpen == 'open' && style.upZIndex}`}>
           <h1 className={`text-7xl font-medium ${style.heading}`}><span className="text-zinc-800">Hello, I'm</span><br/><span className="text-pink-400">Zeynal Mardanli</span></h1>
           <div className={style.socials}>
-            <Link href='https://www.linkedin.com/in/zeynalmardanli/' className={style.social}>
+            <Link href='https://www.linkedin.com/in/zeynalmardanli/' target="_blank" className={style.social}>
               <Image className={style.img} src={linkedinHero} alt="Linkedin" />
             </Link>
-            <Link href='https://www.facebook.com/profile.php?id=100079193090176' className={style.social}>
+            <Link href='https://www.facebook.com/profile.php?id=100079193090176' target="_blank" className={style.social}>
               <Image className={style.img} src={facebookHero} alt="Facebook" />
             </Link>
-            <Link href='https://twitter.com/lshiroc' className={style.social}>
+            <Link href='https://twitter.com/lshiroc' target="_blank" className={style.social}>
               <Image className={`${style.img} ${style.xLogo}`} src={xHeroLogo} alt="X" />
             </Link>
-            <Link href='https://github.com/Lshiroc' className={style.social}>
+            <Link href='https://github.com/Lshiroc' target="_blank" className={style.social}>
               <Image className={style.img} src={githubHero} alt="GitHub" />
             </Link>
           </div>
@@ -220,6 +223,63 @@ export default function Home() {
                   </Link>
                 </div>
               </div>
+              <div className={style.project}>
+                <Image src={tictactoe} alt="Tic-Tac-Toe" className={style.image} />
+                <div className={style.name}>Tic-Tac-Toe</div>
+                <div className={style.technologies}>
+                  ReactJS + SASS + Tailwind
+                </div>
+                <div className={style.description}>Tic-Tac-Toe game to challenge your friends for a duel or bet, simple and fun.</div>
+
+                <div className={style.actions}>
+                  <Link href='https://tic-tac-toe-zen.vercel.app/' target="_blank" className={style.action}>
+                    <Image src={externalLink} alt="Live Site" />
+                    <p>site</p>
+                  </Link>
+                  <Link href='https://github.com/Lshiroc/tic-tac-toe' target="_blank" className={style.action}>
+                  <Image src={code} alt="See Code" />
+                    <p>code</p>
+                  </Link>
+                </div>
+              </div>
+              <div className={style.project}>
+                <Image src={restcountries} alt="Rest Countries" className={style.image} />
+                <div className={style.name}>REST Countries</div>
+                <div className={style.technologies}>
+                  ReactJS + Redux + SASS + REST API
+                </div>
+                <div className={style.description}>REST Countries website for searching countries and their details such as flag, population, border countries etc.</div>
+
+                <div className={style.actions}>
+                  <Link href='https://rest-countries-api-beta-two.vercel.app/' target="_blank" className={style.action}>
+                    <Image src={externalLink} alt="Live Site" />
+                    <p>site</p>
+                  </Link>
+                  <Link href='https://github.com/Lshiroc/rest-countries-api' target="_blank" className={style.action}>
+                  <Image src={code} alt="See Code" />
+                    <p>code</p>
+                  </Link>
+                </div>
+              </div>
+              <div className={style.project}>
+                <Image src={leetcodeStats} alt="LeetCode Stats" className={style.image} />
+                <div className={style.name}>LeetCode Stats</div>
+                <div className={style.technologies}>
+                  NodeJS + ExpressJS + REST API
+                </div>
+                <div className={style.description}>LeetCode stats cards for your GitHub README. Available in both light and dark themes.</div>
+
+                <div className={style.actions}>
+                  <Link href='https://github.com/Lshiroc/leetcode-stats#readme' target="_blank" className={style.action}>
+                    <Image src={externalLink} alt="Live Site" />
+                    <p>readme</p>
+                  </Link>
+                  <Link href='https://github.com/Lshiroc/leetcode-stats' target="_blank" className={style.action}>
+                  <Image src={code} alt="See Code" />
+                    <p>code</p>
+                  </Link>
+                </div>
+              </div>
             </div>
         </section>
         <section id="contact" className={style.contact}>
@@ -236,19 +296,19 @@ export default function Home() {
             <div className={style.rightPart}>
               <div className={style.title}>You can also find me in</div>
               <div className={style.socials}>
-                <Link href="https://www.linkedin.com/in/zeynalmardanli/" className={style.social}>
+                <Link href="https://www.linkedin.com/in/zeynalmardanli/" target="_blank" className={style.social}>
                   <Image className={style.logo} src={linkedin} alt="Linkedin" />
                   <p className={style.username}>@ZeynalMardanli</p>
                 </Link>
-                <Link href="https://github.com/Lshiroc" className={style.social}>
+                <Link href="https://github.com/Lshiroc" target="_blank" className={style.social}>
                   <Image className={style.logo} src={github} alt="GitHub" />
                   <p className={style.username}>@Lshiroc</p>
                 </Link>
-                <Link href="https://www.facebook.com/profile.php?id=100079193090176" className={style.social}>
+                <Link href="https://www.facebook.com/profile.php?id=100079193090176" target="_blank" className={style.social}>
                   <Image className={style.logo} src={facebook} alt="Facebook" />
                   <p className={style.username}>@ZeynalMardanli</p>
                 </Link>
-                <Link href="https://twitter.com/lshiroc" className={style.social}>
+                <Link href="https://twitter.com/lshiroc" target="_blank" className={style.social}>
                   <Image className={`${style.logo} ${style.xLogo}`} src={xLogo} alt="X" />
                   <p className={style.username}>@Lshiroc</p>
                 </Link>

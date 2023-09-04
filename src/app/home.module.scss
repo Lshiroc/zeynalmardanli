@@ -114,13 +114,13 @@
       font-size: 20px;
       color: #111827;
       font-weight: bold;
+      text-shadow:
+      -1px -1px 0 #fff,
+       1px -1px 0 #fff,
+       -1px 1px 0 #fff,
+        1px 1px 0 #fff;
 
       &.active {
-        text-shadow:
-        -1px -1px 0 #fff,
-         1px -1px 0 #fff,
-         -1px 1px 0 #fff,
-          1px 1px 0 #fff;
         color: #f472b6;
         transition: .3s text-shadow;
       }
@@ -680,10 +680,10 @@
 }
 
 @media screen and (max-width: 556px) {
-  .hero {
+  .hero .heroRight {
     .heading {
       font-size: 38px;
-      line-height: 44px;
+      line-height: 48px;
     }
   }
 }
