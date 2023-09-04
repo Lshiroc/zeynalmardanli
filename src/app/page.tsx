@@ -43,7 +43,7 @@ export default function Home() {
   };
 
   const sendMessage = () => {
-    const mainInp = mailInput.current?.value as string;
+    const mainInp = mailInput.current?.value.trim() as string;
     const textInp = textInput.current?.value.trim() as string;
     if(!validator.isEmail(mainInp) || textInp == "") {
       if(sendBtn.current) {
@@ -256,7 +256,7 @@ export default function Home() {
             </div>
           </div>
           <div className={`${style.kururin} ${messageSent && style.animate}`}>
-            <Image className={style.img} src={kururin} alt="Kururin" />
+            <Image className={style.img} src={kururin} alt="Kururin" priority />
           </div>
         </section>
       </main>
