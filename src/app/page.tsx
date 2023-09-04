@@ -198,10 +198,10 @@ export default function Home() {
                     <Image src={externalLink} alt="Live Site" />
                     <p>site</p>
                   </Link>
-                  <Link href='https://github.com/Lshiroc/todo-website' target="_blank" className={style.action}>
-                  <Image src={code} alt="See Code" />
-                    <p>code</p>
-                  </Link>
+                  <div className={`${style.action} ${style.hidden}`}>
+                    <Image src={code} alt="See Code" />
+                    <p>code(private)</p>
+                  </div>
                 </div>
               </div>
               <div className={style.project}>

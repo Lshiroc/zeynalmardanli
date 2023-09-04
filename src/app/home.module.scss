@@ -247,13 +247,16 @@
           p {
             margin-left: 4px;
           }
+
+          &.hidden {
+            cursor: not-allowed;
+          }
         }
 
         .action:last-child {
           margin-left: 10px;
         }
       }
-
     }
   }
 }
